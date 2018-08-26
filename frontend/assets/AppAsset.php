@@ -30,7 +30,6 @@ class AppAsset extends AssetBundle
         'js/price-range.js',
         'js/jquery.prettyPhoto.js',
         'js/main.js'
-
     ];
     public $depends = [
         'yii\web\YiiAsset',
