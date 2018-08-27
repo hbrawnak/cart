@@ -23,7 +23,6 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/html5shiv.js',
-        'js/respond.min.js',
         'js/jquery.js',
         'js/bootstrap.min.js',
         'js/jquery.scrollUp.min.js',
