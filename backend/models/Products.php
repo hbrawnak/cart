@@ -38,12 +38,14 @@ class Products extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'name', 'description', 'ikey', 'amount', 'availability', 'prod_condition', 'brand', 'stock', 'image', 'status'], 'required'],
-            [['user_id', 'quantity', 'stock', 'image', 'status'], 'integer'],
+            [['name', 'description', 'ikey', 'amount', 'availability', 'prod_condition', 'brand', 'stock', 'image', 'status'], 'required'],
+            [['user_id', 'quantity', 'stock', 'status'], 'integer'],
             [['description'], 'string'],
-            [['created_at'], 'safe'],
+            [['created_at', 'user_id'], 'safe'],
             [['name', 'prod_condition', 'brand'], 'string', 'max' => 100],
             [['ikey', 'amount', 'availability'], 'string', 'max' => 50],
+            [['image'], 'string', 'max' => 255],
+            [['image'], 'file','extensions'=>'jpg,png', 'skipOnEmpty'=>false]
         ];
     }
 
