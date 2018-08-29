@@ -1,5 +1,6 @@
 <?php
 use \yii\widgets\ListView;
+use \yii\widgets\LinkPager;
 ?>
 
 <section id="slider"><!--slider-->
@@ -216,27 +217,46 @@ use \yii\widgets\ListView;
                     <?php //foreach ($products as $product) { ?>
                     <?php //} ?>
 
-                    <!--List view-->
+                    <!--List view Starts-->
                     <?php
                        echo ListView::widget([
                                 'dataProvider' => $products,
                                 'layout' => '<div class=\"items\">{items}</div>',
-                                //'itemOptions' => ['class' => 'item'],
+                                'itemOptions' => ['class' => 'item'],
                                 'itemView' => '_product'
                         ])
                     ?>
-                    <!--List view-->
+                    <!--List view Ends-->
 
+                    <!--Grid View Starts-->
+                    <?php
+                        echo \yii\grid\GridView::widget([
+                                'dataProvider' => $products,
+                                'columns' => [
+                                        ['class' => 'yii\grid\SerialColumn'],
+                                        'name',
+                                        'amount',
+                                        'image',
+                                        'created_at'
+                                ]
+                        ])
+
+                    ?>
+                    <!--Grid View Ends-->
+
+                    <!--Pagination Starts-->
                     <div class="row">
                         <div class="well col-md-12">
                             <?php
-                                echo \yii\widgets\LinkPager::widget([
+                                echo LinkPager::widget([
                                         'pagination' => $products->pagination
                                 ]);
 
                             ?>
                         </div>
                     </div>
+                    <!--Pagination Ends-->
+
 
                 </div><!--features_items-->
 

@@ -77,7 +77,7 @@ class SiteController extends Controller
         //$products = Products::find()->where(['status' => 1])->all();
 
         $products = new ActiveDataProvider(['query'=>Products::find()->where(['status' => 1])->orderBy('created_at DESC'),
-            'pagination' => ['pageSize'=>1,
+            'pagination' => ['pageSize'=>3,
                 ]
 
             ]);
