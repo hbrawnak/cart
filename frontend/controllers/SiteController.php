@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use backend\models\Products;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\data\ActiveDataProvider;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -73,7 +74,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $products = Products::find()->where(['status' => 1])->all();
+        //$products = Products::find()->where(['status' => 1])->all();
+
+        $products = new ActiveDataProvider(['query'=>Products::find()->where(['status' => 1])->orderBy('created_at DESC'),
+            'pagination' => ['pageSize'=>1,
+                ]
+
+            ]);
+
         return $this->render('index', compact('products'));
     }
 

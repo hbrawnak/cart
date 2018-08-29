@@ -1,4 +1,6 @@
-
+<?php
+use \yii\widgets\ListView;
+?>
 
 <section id="slider"><!--slider-->
     <div class="container">
@@ -211,33 +213,31 @@
             <div class="col-sm-9 padding-right">
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">Features Items</h2>
-                    <?php foreach ($products as $product) { ?>
-                    <div class="col-sm-4">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="<?=\yii\helpers\Url::to('@web/') ?>images/home/product1.jpg" alt="" />
-                                    <h2>$<?= $product->amount; ?></h2>
-                                    <p><?= $product->name; ?></p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </div>
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <h2>$<?= $product->amount; ?></h2>
-                                        <p><?= $product->name; ?></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="choose">
-                                <ul class="nav nav-pills nav-justified">
-                                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                </ul>
-                            </div>
+                    <?php //foreach ($products as $product) { ?>
+                    <?php //} ?>
+
+                    <!--List view-->
+                    <?php
+                       echo ListView::widget([
+                                'dataProvider' => $products,
+                                'layout' => '<div class=\"items\">{items}</div>',
+                                //'itemOptions' => ['class' => 'item'],
+                                'itemView' => '_product'
+                        ])
+                    ?>
+                    <!--List view-->
+
+                    <div class="row">
+                        <div class="well col-md-12">
+                            <?php
+                                echo \yii\widgets\LinkPager::widget([
+                                        'pagination' => $products->pagination
+                                ]);
+
+                            ?>
                         </div>
                     </div>
-                    <?php } ?>
+
                 </div><!--features_items-->
 
                 <div class="category-tab"><!--category-tab-->
