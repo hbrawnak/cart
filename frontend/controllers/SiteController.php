@@ -20,6 +20,7 @@ use frontend\models\ContactForm;
  */
 class SiteController extends Controller
 {
+    public $enableCsrfValidation = false;
     /**
      * {@inheritdoc}
      */
@@ -83,6 +84,25 @@ class SiteController extends Controller
             ]);
 
         return $this->render('index', compact('products'));
+    }
+
+
+    public function actionCart()
+    {
+        $session = Yii::$app->session;
+        $session['cart'] = '';
+        //$pid = $session['cart'];
+
+        if (isset($_POST['pid']))
+        {
+            //$pid = $_POST['pid'];
+            $session['cart'] = $_POST['pid'];
+        }
+
+        //print_r($session['cart']);
+        $carts = Products::find()->where(['id'=>$session['cart']])->all();
+
+        return $this->render('cart', compact('carts'));
     }
 
     /**
