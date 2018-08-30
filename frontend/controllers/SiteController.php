@@ -90,13 +90,12 @@ class SiteController extends Controller
     public function actionCart()
     {
         $session = Yii::$app->session;
-        $session['cart'] = '';
-        //$pid = $session['cart'];
+        $pid = $session['cart'];
 
         if (isset($_POST['pid']))
         {
-            //$pid = $_POST['pid'];
-            $session['cart'] = $_POST['pid'];
+            $pid[] = $_POST['pid'];
+            $session['cart'] = $pid;
         }
 
         //print_r($session['cart']);
