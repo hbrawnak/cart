@@ -17,7 +17,7 @@ use \yii\helpers\Url;
                 <p><?= $model->name; ?></p>
 
                 <form action="<?=Url::to(['/site/cart'])?>" method="post">
-                    <input type="text" name="pid" value="<?= $model->id; ?>">
+                    <input type="hidden" name="pid" value="<?= $model->id; ?>">
                     <button class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
                 </form>
             </div>
@@ -26,9 +26,10 @@ use \yii\helpers\Url;
                     <h2>$<?= $model->amount; ?></h2>
                     <p><?= $model->name; ?></p>
                     <form action="<?=Url::to(['/site/cart'])?>" method="post">
-                        <input type="text" name="pid" value="<?= $model->id; ?>">
+                        <input type="hidden" name="pid" value="<?= $model->id; ?>">
                         <button class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
                     </form>
+                    <a class="btn btn-default add-to-cart" href="<?=Url::to(['/product','id'=>$model->id])?>">View</a>
                 </div>
             </div>
         </div>
